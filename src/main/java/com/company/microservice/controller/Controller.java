@@ -1,25 +1,27 @@
 package com.company.microservice.controller;
 
+import com.company.microservice.model.Medicion;
+import com.company.microservice.repository.MedicionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/mediciones")
 public class Controller {
 
-    @GetMapping("/")
-    public ResponseEntity<String> get() {
-        return ResponseEntity.ok("Hello from Railway + Spring!");
+    @Autowired
+    private MedicionRepository medicionRepository;
+
+    @PostMapping
+    public ResponseEntity<Medicion> guardar(@RequestBody Medicion medicion) {
+        return ResponseEntity.ok(medicionRepository.save(medicion));
     }
 
-     @PostMapping("/medicion")
-    public ResponseEntity<Medicion> registrarMedicion(@RequestBody Medicion medicion) {
-        Medicion guardada = medicionRepository.save(medicion);
-        return ResponseEntity.ok(guardada);
-    }
-
-    @GetMapping("/mediciones")
-    public ResponseEntity<List<Medicion>> obtenerTodas() {
+    @GetMapping
+    public ResponseEntity<List<Medicion>> listar() {
         return ResponseEntity.ok(medicionRepository.findAll());
     }
 }
