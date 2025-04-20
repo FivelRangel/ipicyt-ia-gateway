@@ -1,9 +1,37 @@
-## Load Balancer must use Railway's private domain name instead of Local IP
-## This value can be obtained in the Railway deployment tab, Settings -> Networking -> Private Networking
+## Eureka Configuration
 eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
   instance:
     preferIpAddress: false
     non-secure-port-enabled: true
     secure-port-enabled: false
     non-secure-port: ${server.port}
     secure-port: 443
+    hostname: ${HOSTNAME:localhost}
+
+## Spring & PostgreSQL Configuration
+spring:
+  application:
+    name: ${APP_NAME:microservice}
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+## Server Port
+server:
+  port: ${PORT:8080}
