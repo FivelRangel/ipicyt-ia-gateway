@@ -1,15 +1,5 @@
-eureka:
-  client:
-    enabled: false  # 🔥 Fuerza el apagado directo
-    registerWithEureka: false
-    fetchRegistry: false
-    service-url:
-      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
-    hostname: ${HOSTNAME:localhost}
+# application-railway.yml
 
-## Spring & PostgreSQL Configuration
 spring:
   application:
     name: ${APP_NAME:microservice}
@@ -20,7 +10,6 @@ spring:
     password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
 
-
   jpa:
     show-sql: true
     hibernate:
@@ -29,6 +18,20 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-## Server Port
+  cloud:
+    discovery:
+      enabled: false  # Apagar descubrimiento Spring Cloud
+
+eureka:
+  client:
+    enabled: false        # Apagar Eureka
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    preferIpAddress: true
+    hostname: ${HOSTNAME:localhost}
+
 server:
   port: ${PORT:8080}
