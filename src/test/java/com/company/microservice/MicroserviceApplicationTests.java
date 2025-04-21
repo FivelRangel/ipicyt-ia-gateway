@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles("railway") // 🔥 ESTA LÍNEA ACTIVA TU `application-railway.yml`
+@ActiveProfiles("test") // ✅ Usa `application-test.yml` con H2 en memoria
 class MicroserviceApplicationTests {
 
 	@Test
