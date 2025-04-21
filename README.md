@@ -6,6 +6,7 @@ Este proyecto, consiste en un desarrollo para el Diplomado de Ciencia y Tecnolog
 https://railway.com/project/b0a02c62-e422-4e1e-b340-f91df3001a9a?environmentId=ba03676a-aa57-425d-8d88-781dbdc4b8b3
 
 #Endpoints:
+1-
 
 GET:
 https://ipicyt-ia-gateway-production.up.railway.app/mediciones
@@ -19,6 +20,9 @@ Index:
 https://ipicyt-ia-gateway-production.up.railway.app/mediciones/hello
 
 
+2.-
+POST
+https://ipicyt-ia-gateway-production.up.railway.app/sensores
 
 Objeto del sensor:
 {
@@ -42,5 +46,9 @@ Objeto del sensor:
     "deduplication_id": "12f6d36d-7860-4dca-bcf0-297ad1a6db39"
   }
 }
+
+GET: Obtiene los últimos sensores registrados.
+https://ipicyt-ia-gateway-production.up.railway.app/sensores
+
 
 
