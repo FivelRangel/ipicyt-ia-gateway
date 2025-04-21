@@ -19,4 +19,10 @@ public class SensorController {
         repository.save(sensor);
         return ResponseEntity.ok("✅ JSON recibido y guardado en la tabla 'sensores'");
     }
+
+     @GetMapping
+    public ResponseEntity<List<Sensor>> obtenerTodos() {
+        List<Sensor> sensores = repository.findAll();
+        return ResponseEntity.ok(sensores);
+    }
 }
