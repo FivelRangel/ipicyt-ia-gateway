@@ -1,11 +1,15 @@
 spring:
+  application:
+    name: ${APP_NAME:microservice}
+
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/railway
-    username: testuser
-    password: testpass
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
@@ -19,3 +23,15 @@ spring:
   test:
     database:
       replace: none
+
+cloud:
+  discovery:
+    enabled: false
+
+eureka:
+  client:
+    enabled: false
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka
