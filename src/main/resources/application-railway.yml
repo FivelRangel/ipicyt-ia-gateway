@@ -1,13 +1,9 @@
-# application-railway.yml
-
 spring:
   application:
     name: ${APP_NAME:microservice}
 
   datasource:
-url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-username: ${PGUSER}
-password: ${PGPASSWORD}
+    url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -18,9 +14,9 @@ password: ${PGPASSWORD}
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  cloud:
-    discovery:
-      enabled: false  # Apaga descubrimiento de servicios en producción
+cloud:
+  discovery:
+    enabled: false  # Apaga descubrimiento de servicios en producción
 
 eureka:
   client:
@@ -29,9 +25,3 @@ eureka:
     fetchRegistry: false
     service-url:
       defaultZone: http://localhost:8761/eureka
-  instance:
-    preferIpAddress: true
-    hostname: ${HOSTNAME:localhost}
-
-server:
-  port: ${PORT:8080}
