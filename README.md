@@ -24,7 +24,13 @@ https://ipicyt-ia-gateway-production.up.railway.app/mediciones/hello
 POST
 https://ipicyt-ia-gateway-production.up.railway.app/sensores
 
-Objeto del sensor:
+
+GET: Obtiene los últimos sensores registrados.
+https://ipicyt-ia-gateway-production.up.railway.app/sensores
+
+
+Valores en crudo que envía el sensor:
+Objeto del sensor 1:
 {
   "time": "2025-04-21T04:45:18.015654971+00:00",
   "deviceInfo": {
@@ -47,8 +53,57 @@ Objeto del sensor:
   }
 }
 
-GET: Obtiene los últimos sensores registrados.
-https://ipicyt-ia-gateway-production.up.railway.app/sensores
+Onjeto del sensor 2:
+{
+  "deduplicationId": "12f6d36d-7860-4dca-bcf0-297ad1a6db39",
+  "time": "2025-04-21T04:45:18.005217982+00:00",
+  "deviceInfo": {
+    "tenantId": "52f14cd4-c6f1-4fbd-8f87-4025e1d49242",
+    "tenantName": "IPICyT",
+    "applicationId": "11744b65-5428-4ad2-b6df-03b13e547296",
+    "applicationName": "Co_2",
+    "deviceProfileId": "38607b09-4782-4b75-99d1-998b564ed43d",
+    "deviceProfileName": "Co_2",
+    "deviceName": "Sensor_1",
+    "devEui": "2cf7f1c16100001a",
+    "deviceClassEnabled": "CLASS_C",
+    "tags": {}
+  },
+  "devAddr": "26011a00",
+  "adr": true,
+  "dr": 0,
+  "fCnt": 1175,
+  "fPort": 8,
+  "confirmed": true,
+  "data": "AQN/qkM=",
+  "rxInfo": [
+    {
+      "gatewayId": "2cf7f11154600043",
+      "uplinkId": 36879,
+      "nsTime": "2025-04-21T04:45:17.786811151+00:00",
+      "rssi": -96,
+      "snr": -17.0,
+      "channel": 6,
+      "rfChain": 1,
+      "location": {},
+      "context": "DoFcoQ==",
+      "crcStatus": "CRC_OK"
+    }
+  ],
+  "txInfo": {
+    "frequency": 905100000,
+    "modulation": {
+      "lora": {
+        "bandwidth": 125000,
+        "spreadingFactor": 10,
+        "codeRate": "CR_4_5"
+      }
+    }
+  },
+  "regionConfigId": "us915_0"
+}
+
+
 
 
 
