@@ -24,4 +24,10 @@ public class Controller {
     public ResponseEntity<List<Medicion>> listar() {
         return ResponseEntity.ok(medicionRepository.findAll());
     }
+
+     // ✅ Nuevo endpoint: GET /mediciones/hello
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello World";
+    }
 }
