@@ -1,6 +1,6 @@
 # application.yml
 
-## Configuration for Eureka (activo solo local o desarrollo)
+## Configuración para Eureka (solo local o desarrollo)
 eureka:
   client:
     enabled: true
@@ -13,18 +13,18 @@ eureka:
     hostname: ${HOSTNAME:localhost}
     non-secure-port-enabled: true
     secure-port-enabled: false
-    non-secure-port: ${server.port}
+    non-secure-port: ${server.port:8080}
     secure-port: 443
 
-## Configuración App y DB (local)
+## Configuración Spring y Base de Datos local (PostgreSQL)
 spring:
   application:
     name: ${APP_NAME:microservice}
 
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    username: ${PGUSER}
-    password: ${PGPASSWORD}
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:microservice}
+    username: ${PGUSER:postgres}
+    password: ${PGPASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -36,3 +36,4 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
+  port: ${PORT:8080}
