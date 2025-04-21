@@ -5,9 +5,7 @@ spring:
     name: ${APP_NAME:microservice}
 
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    username: ${PGUSER}
-    password: ${PGPASSWORD}
+    url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -20,11 +18,11 @@ spring:
 
   cloud:
     discovery:
-      enabled: false  # Apagar descubrimiento Spring Cloud
+      enabled: false  # Apaga descubrimiento de servicios en producción
 
 eureka:
   client:
-    enabled: false        # Apagar Eureka
+    enabled: false
     registerWithEureka: false
     fetchRegistry: false
     service-url:
