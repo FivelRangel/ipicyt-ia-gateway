@@ -30,7 +30,8 @@ https://ipicyt-ia-gateway-production.up.railway.app/sensores
 
 
 Valores en crudo que envía el sensor:
-Objeto del sensor 1:
+Objeto del sensor 1 con error:
+
 {
   "time": "2025-04-21T04:45:18.015654971+00:00",
   "deviceInfo": {
@@ -53,7 +54,7 @@ Objeto del sensor 1:
   }
 }
 
-Onjeto del sensor 2:
+Onjeto del sensor 2 sin error (de decodificación):
 {
   "deduplicationId": "12f6d36d-7860-4dca-bcf0-297ad1a6db39",
   "time": "2025-04-21T04:45:18.005217982+00:00",
