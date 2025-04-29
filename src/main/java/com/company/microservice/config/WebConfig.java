@@ -1,4 +1,4 @@
-package com.company.microservice.config; // <- Ajusta este package si es diferente en tu proyecto
+package com.company.microservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +14,13 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*")
+                        .allowedOrigins(
+                            "https://ipicyt-dashboard-react-plus-production.up.railway.app", // Tu frontend real
+                            "http://localhost:3000"  // Para pruebas locales React
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
+                        .exposedHeaders("*")
                         .allowCredentials(true);
             }
         };
