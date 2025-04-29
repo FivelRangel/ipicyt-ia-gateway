@@ -24,13 +24,28 @@ public class SensorController {
         return ResponseEntity.ok("✅ JSON recibido y guardado en la tabla 'sensores'");
     }
 
-    // Mantener el nombre original: obtenerTodos() pero ahora limitando a los últimos 50
-    @GetMapping("/sensores")
-    public ResponseEntity<List<Sensor>> obtenerTodos() {
-        Pageable limit = PageRequest.of(0, 50, Sort.by(Sort.Direction.DESC, "id"));
-        List<Sensor> sensores = repository.findAll(limit).getContent();
-        return ResponseEntity.ok(sensores);
-    }
+
+
+@GetMapping("/sensores")
+public ResponseEntity<List<Map<String, Object>>> obtenerTodos() {
+    Pageable limit = PageRequest.of(0, 50, Sort.by(Sort.Direction.DESC, "id"));
+    List<Sensor> sensores = repository.findAll(limit).getContent();
+
+    ObjectMapper mapper = new ObjectMapper();
+
+    List<Map<String, Object>> parsedSensores = sensores.stream()
+            .map(sensor -> {
+                try {
+                    return mapper.readValue(sensor.getContenidoJson(), Map.class);
+                } catch (Exception e) {
+                    throw new RuntimeException("Error al parsear contenidoJson", e);
+                }
+            })
+            .collect(Collectors.toList());
+
+    return ResponseEntity.ok(parsedSensores);
+}
+
 
     // Nuevo método para traer absolutamente todos los sensores
     @GetMapping("/todos")
