@@ -38,19 +38,20 @@ public ResponseEntity<List<Map<String, Object>>> obtenerTodos() {
     List<Sensor> sensores = repository.findAll(limit).getContent();
 
     ObjectMapper mapper = new ObjectMapper();
+    List<Map<String, Object>> resultado = new ArrayList<>();
 
-    List<Map<String, Object>> parsedSensores = sensores.stream()
-            .map(sensor -> {
-                try {
-                    return mapper.readValue(sensor.getContenidoJson(), Map.class);
-                } catch (Exception e) {
-                    throw new RuntimeException("Error al parsear contenidoJson", e);
-                }
-            })
-            .collect(Collectors.toList());
+    for (Sensor sensor : sensores) {
+        try {
+            Map<String, Object> map = mapper.readValue(sensor.getContenidoJson(), Map.class);
+            resultado.add(map);
+        } catch (Exception e) {
+            e.printStackTrace(); // o manejarlo mejor
+        }
+    }
 
-    return ResponseEntity.ok(parsedSensores);
+    return ResponseEntity.ok(resultado);
 }
+
 
 
     // Nuevo método para traer absolutamente todos los sensores
