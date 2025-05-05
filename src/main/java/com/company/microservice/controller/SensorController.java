@@ -56,9 +56,23 @@ public ResponseEntity<List<Map<String, Object>>> obtenerTodos() {
 
 
     // Nuevo método para traer absolutamente todos los sensores
-    @GetMapping("/todos")
-    public ResponseEntity<List<Sensor>> obtenerTodosSinLimite() {
-        List<Sensor> sensores = repository.findAll();
-        return ResponseEntity.ok(sensores);
+@GetMapping("/todos")
+public ResponseEntity<List<Map<String, Object>>> obtenerTodosSinLimite() {
+    List<Sensor> sensores = repository.findAll();
+
+    ObjectMapper mapper = new ObjectMapper();
+    List<Map<String, Object>> resultado = new ArrayList<>();
+
+    for (Sensor sensor : sensores) {
+        try {
+            Map<String, Object> map = mapper.readValue(sensor.getContenidoJson(), Map.class);
+            resultado.add(map);
+        } catch (Exception e) {
+            e.printStackTrace(); // Considera un mejor manejo de errores
+        }
     }
+
+    return ResponseEntity.ok(resultado);
+}
+
 }
