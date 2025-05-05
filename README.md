@@ -28,6 +28,9 @@ https://ipicyt-ia-gateway-production.up.railway.app/sensores
 GET: Obtiene los últimos sensores registrados.
 https://ipicyt-ia-gateway-production.up.railway.app/sensores
 
+Ontener TODOS los valores almacenados:
+GET: https://ipicyt-ia-gateway-production.up.railway.app/todos
+
 
 Valores en crudo que envía el sensor:
 Objeto del sensor 1 con error:
